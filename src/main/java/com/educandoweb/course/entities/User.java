@@ -1,4 +1,4 @@
-package com.educandoweb.course;
+package com.educandoweb.course.entities;
 
 import jakarta.persistence.*;
 
@@ -15,18 +15,18 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String phone;
-    private String passwrod;
+    private String password;
 
-    public User(){
+    public User() {
 
     }
 
-    public User(Long id, String name, String email, String phone, String passwrod) {
+    public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.passwrod = passwrod;
+        this.password = password;
     }
 
     public Long getId() {
@@ -61,11 +61,11 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public String getPasswrod() {
-        return passwrod;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswrod(String passwrod) {
-        this.passwrod = passwrod;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
