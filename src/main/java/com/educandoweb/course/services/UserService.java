@@ -15,6 +15,7 @@ public class UserService {
     private UserRepository repository;
 
     public List<User> findAll() {
+
         return repository.findAll();
     }
 
@@ -22,4 +23,5 @@ public class UserService {
        Optional<User> obj =  repository.findById(id);
        return obj.get();
     }
+
 }
