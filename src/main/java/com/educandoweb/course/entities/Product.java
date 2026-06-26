@@ -20,7 +20,10 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category" // na relação muitos pra muitos nao pode ter relacão de entidades então criamos uma tabela apartada
+            , joinColumns = @JoinColumn(name = "product_id") // nome da PK dessa classe
+            , inverseJoinColumns = @JoinColumn(name = "category_id")) // nome da PK da outra classe
     private Set<Category> categories = new HashSet<>();
     // mesmo produto nao pode ter mais de uma categoria, por isso o Set
     // usamos o hashSet ao invés do Set porque nao podemos instanciar uma interface e sim a classe onde a interface é instanciada igual List com ArrayList
