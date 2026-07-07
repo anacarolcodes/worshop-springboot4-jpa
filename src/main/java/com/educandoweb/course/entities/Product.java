@@ -1,5 +1,6 @@
 package com.educandoweb.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -24,10 +25,13 @@ public class Product implements Serializable {
     @JoinTable(name = "tb_product_category" // na relação muitos pra muitos nao pode ter relacão de entidades então criamos uma tabela apartada
             , joinColumns = @JoinColumn(name = "product_id") // nome da PK dessa classe
             , inverseJoinColumns = @JoinColumn(name = "category_id")) // nome da PK da outra classe
+
     private Set<Category> categories = new HashSet<>();
     // mesmo produto nao pode ter mais de uma categoria, por isso o Set
     // usamos o hashSet ao invés do Set porque nao podemos instanciar uma interface e sim a classe onde a interface é instanciada igual List com ArrayList
 
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Product() {
 
@@ -85,6 +89,15 @@ public class Product implements Serializable {
         return categories;
     }
 //coleções não tem set, porque não são alteradas e nem removidas, somente acrescentadas
+
+    @JsonIgnore
+    public Set<Order> getOrder(){
+        Set<Order> set = new HashSet<>();
+                for (OrderItem x : items){
+                    set.add(x.getOrder());
+                }
+                return set;
+    }
 
     @Override
     public boolean equals(Object o) {

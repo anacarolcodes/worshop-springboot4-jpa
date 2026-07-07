@@ -27,5 +27,4 @@ public class OrderResource {
         return ResponseEntity.ok().body(obj);
     }
 
-
 }
