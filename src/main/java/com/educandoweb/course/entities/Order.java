@@ -79,6 +79,15 @@ public class Order implements Serializable {
         this.client = client;
     }
 
+    public Double total (){
+        double sum = 0.0;
+        for (OrderItem x : items){ // vai varrer cada item do pedido, na lista de itens // para cada item relacionado a esse pedido some o subtotal
+            sum += x.getTotal(); //aqui chama o metodo da classe OrderItem chamado getSubTotal, opera na logica dele onde vai multiplicar um preço por sua quantidade e soma com todos que encontrar
+        }
+        return sum;
+    }
+
+
     public Set<OrderItem> getItems(){
         return items;
     }

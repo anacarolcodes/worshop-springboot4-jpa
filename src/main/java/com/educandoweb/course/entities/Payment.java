@@ -1,5 +1,6 @@
 package com.educandoweb.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -13,6 +14,7 @@ public class Payment {
     private Long id;
     private Instant moment;
 
+    @JsonIgnore
     @OneToOne
     @MapsId // serve pra avisar ao JPA que o id dessa classe payment é refletido do Order
     private Order order;
